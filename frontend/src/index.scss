@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+@import 'font-awesome/font-awesome';
+@import '_variables';
+@import '_helpers';
+@import './components/Layout/style';
+@import './components/Loader/style';
+@import './components/PostsContainer/style';
+@import './components/PostItem/style';
+@import './components/Comment/style';
+@import './views/Post/style';
+@import './views/PostEdit/style';

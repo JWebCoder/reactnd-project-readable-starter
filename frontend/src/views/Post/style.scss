@@ -1,0 +1,16 @@
+.post-view {
+  .body {
+    margin: 10px 0;
+  }
+
+  .post-actions {
+    position: fixed;
+    top: 1px;
+    right: 1px;
+
+    .link {
+      border: none;
+      font-size: 16px;
+    }
+  }
+}
