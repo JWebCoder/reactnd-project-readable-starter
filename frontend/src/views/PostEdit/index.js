@@ -23,12 +23,24 @@ const mapDispatchToProps = dispatch => (
 )
 
 class Post extends Component {
+  constructor(props) {
+    super(props)
+
+    if (!this.props.match.params.post_id) {
+      this.isNew = true
+    }
+  }
+
   componentDidMount() {
-    postsService.getPost(this.props.match.params.post_id).then(
-      post => {
-        this.props.actions.setCurrentPost(post)
-      }
-    )
+    if (this.props.match.params.post_id) {
+      postsService.getPost(this.props.match.params.post_id).then(
+        post => {
+          this.props.actions.setCurrentPost(post)
+        }
+      )
+    } else {
+      this.props.actions.setCurrentPost({})
+    }
 
     if (this.props.categories.length === 0) {
       categoriesService.getCategories().then(
@@ -37,30 +49,6 @@ class Post extends Component {
         }
       )
     }
-  }
-
-  voteUp(post) {
-    postsService.upVote(post.id).then(
-      result => {
-        this.props.actions.setPost(result)
-        this.props.actions.setCurrentPost(result)
-      }
-    )
-
-  }
-
-  voteDown(post) {
-    postsService.downVote(post.id).then(
-      result => {
-        this.props.actions.setPost(result)
-        this.props.actions.setCurrentPost(result)
-      }
-    )
-  }
-
-  createComment() {
-    console.log(this.newCommentText.value)
-    console.log(this.props.post.id)
   }
 
   back() {
@@ -113,7 +101,7 @@ class Post extends Component {
               </div>
             </div>
           )) || (
-            <div className='actions'>
+            <div className='post-actions'>
               <div className='menu-item'>
                 <button className='link menu-link' onClick={() => this.createPost()}>Create</button>
               </div>
@@ -135,7 +123,14 @@ class Post extends Component {
                 }}
                 />
               <br/>
-              Author: {author}
+              Author: {(this.isNew && (<input
+                type='text'
+                value={author || ''}
+                onChange={(event) => {
+                  this.updatePost('author', event.target.value);
+                }}
+                />))
+                || (<span>{author}</span>)}
             </header>
             <div className='body'>
               <textarea

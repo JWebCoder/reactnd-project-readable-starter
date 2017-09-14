@@ -17,6 +17,9 @@ const Layout = props => {
           <li className='menu-item'>
             <NavLink to="/categories" activeClassName='menu-link-active' className='menu-link'>Categories</NavLink>
           </li>
+          <li className='menu-item'>
+            <NavLink to="/create" activeClassName='menu-link-active' className='menu-link'>New Post</NavLink>
+          </li>
         </ul>
       </nav>
       <div className={containerClass}>

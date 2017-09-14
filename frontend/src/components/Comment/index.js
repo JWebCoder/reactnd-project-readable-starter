@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import postsService from 'services/posts'
 import { bindActionCreators } from 'redux'
 import * as PostActions from 'reducers/posts/actions'
@@ -75,7 +74,7 @@ const Comment = props => {
     props.actions.setCurrentPostFromStore(comment.parentId)
   }
 
-  let {body, author, id, voteScore, parentId, edit} = props.data
+  let {body, author, id, voteScore, edit} = props.data
 
   return (
     <article className='comment'>
@@ -94,7 +93,7 @@ const Comment = props => {
           </div>
         </div>
       </header>
-      {edit && (
+      {(edit && (
         <textarea
           type='text'
           value={body}
@@ -102,7 +101,7 @@ const Comment = props => {
             updateComment('body', event.target.value);
           }}
           />
-      ) || body}
+      )) || body}
       <footer>
         {edit && (
           <button className='button' onClick={() => saveComment(props.data)}>Save</button>

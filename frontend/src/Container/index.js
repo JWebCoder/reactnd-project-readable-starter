@@ -13,6 +13,7 @@ const Container = props => {
     <Switch>
       <Route exact path="/" component={Home}/>
       <Route path="/categories" component={Categories}/>
+      <Route path="/create" component={PostEdit}/>
       <Route path="/:category/:post_id/edit" component={PostEdit}/>
       <Route path="/:category/:post_id" component={Post}/>
       <Route path="/:category" component={PostsCategory}/>
