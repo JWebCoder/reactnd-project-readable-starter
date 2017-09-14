@@ -8,6 +8,7 @@ import * as PostActions from 'reducers/posts/actions'
 import * as CategoriesActions from 'reducers/categories/actions'
 import {connect} from 'react-redux'
 import uuidv1 from 'uuid/v1'
+import {Link} from 'react-router-dom';
 
 const mapStateToProps = state => (
   {
@@ -106,7 +107,7 @@ class Post extends Component {
                 <button className='link menu-link' onClick={() => this.createPost()}>Create</button>
               </div>
               <div className='menu-item'>
-                <button className='link menu-link' onClick={() => this.back()}>Back</button>
+                <Link className='link menu-link' to='/'>Back</Link>
               </div>
             </div>
           )}
